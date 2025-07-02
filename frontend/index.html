@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>Meeting Summarizer</title>
+  <style>
+    /* Just basic styles for clarity */
+    #loginForm, #registerForm, #uploadSection {
+      margin: 20px 0;
+    }
+    #uploadSection { display: none; }
+  </style>
+</head>
+<body>
+
+  <h1>Meeting Summarizer</h1>
+
+  <!-- Register form -->
+  <div id="registerForm">
+    <h2>Register</h2>
+    <input id="regName" type="text" placeholder="Name" />
+    <input id="regEmail" type="email" placeholder="Email" />
+    <input id="regPassword" type="password" placeholder="Password" />
+    <button onclick="register()">Register</button>
+    <p id="registerMessage"></p>
+  </div>
+
+  <!-- Login form -->
+  <div id="loginForm">
+    <h2>Login</h2>
+    <input id="loginEmail" type="email" placeholder="Email" />
+    <input id="loginPassword" type="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p id="loginMessage"></p>
+  </div>
+
+  <!-- Upload & process section (shown after login) -->
+  <div id="uploadSection">
+    <h2>Upload Audio File</h2>
+    <input type="file" id="audioInput" accept="audio/*" />
+    <button onclick="uploadAudio()">Upload & Summarize</button>
+    <p id="uploadMessage"></p>
+
+    <h3>Summary</h3>
+    <pre id="summaryOutput"></pre>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+<script src="script.js?v=1.2"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
