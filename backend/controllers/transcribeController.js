@@ -61,7 +61,7 @@ const getTranscriptionResult = async (req, res) => {
     } else if (job.TranscriptionJobStatus === 'FAILED') {
       return res.status(200).json({ status: 'FAILED' });
     } else {
-      return res.status(200).json({ status: 'IN_PROGRESS' });
+      return res.status(200).json({ status: 'in progress' });
     }
   } catch (error) {
     console.error(error);
