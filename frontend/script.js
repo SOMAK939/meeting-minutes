@@ -1,5 +1,4 @@
-const apiBase = "http://localhost:5001/api"; // Your backend base URL
-
+const apiBase = "http://mom-app-env-1.eba-jkp2rdbg.ap-south-1.elasticbeanstalk.com/api"; 
 // Helper: Save token in localStorage
 function saveToken(token) {
   localStorage.setItem("token", token);
