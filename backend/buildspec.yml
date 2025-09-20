@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18  # Specify a Node.js version
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+  build:
+    commands:
+      - echo "Build started on `date`"
+      - echo "No build commands needed for this project."
+artifacts:
+  files:
+    - '**/*' # This includes all files and folders
