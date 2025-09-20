@@ -1,4 +1,4 @@
-const apiBase = "http://mom-app-env-1.eba-jkp2rdbg.ap-south-1.elasticbeanstalk.com/api"; 
+const apiBase = "http://mom-app-env.eba-jkp2rdbg.ap-south-1.elasticbeanstalk.com/api"; 
 // Helper: Save token in localStorage
 function saveToken(token) {
   localStorage.setItem("token", token);
