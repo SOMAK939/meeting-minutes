@@ -22,7 +22,7 @@ const corsOptions = {
 
 
 app.use(cors(corsOptions));
-
+//ok
 
 
 dotenv.config();
