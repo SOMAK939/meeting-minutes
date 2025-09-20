@@ -31,7 +31,7 @@ const startTranscription = async (req, res) => {
 
   try {
     await transcribeClient.send(command);
-    res.status(200).json({ message: 'Transcription job started', jobName });
+    res.status(200).json({ message: 'TRANSCRIPTION STARTED', jobName });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Transcription failed to start' });
