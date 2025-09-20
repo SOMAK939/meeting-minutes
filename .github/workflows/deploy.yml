@@ -1,0 +1,56 @@
+name: Deploy Full Stack Application
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  # This job deploys the backend to Elastic Beanstalk
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Generate deployment package
+        # This command goes into the backend directory, zips its contents,
+        # and places the zip file in the root directory for the next step.
+        run: (cd backend && zip -r ../deploy.zip . -x "node_modules/*")
+
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: mom-app
+          environment_name: Mom-app-env # Make sure this matches your EB environment name
+          region: ap-south-1
+          version_label: "v1-${{ github.sha }}"
+          deployment_package: deploy.zip
+
+  # This job deploys the frontend to S3
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Deploy to S3
+        run: aws s3 sync . s3://mom-frontend --delete
