@@ -34,10 +34,10 @@ app.use('/api/s3', require('./routes/s3Routes'));              //router.get('/si
 app.use('/api/gemini', require('./routes/geminiRoutes'));      //router.post('/summarize', summarizeTranscript);
 
 
-// This is a perfect health check route
-app.get('/', (req, res) => {
-  res.status(200).send('API is running!');
-});
+// // This is a perfect health check route
+// app.get('/', (req, res) => {
+//   res.status(200).send('API is running!');
+// });
 
 app.use('/api/transcribe', transcribeRoutes);          
 //router.post('/start', protect, startTranscription); 
